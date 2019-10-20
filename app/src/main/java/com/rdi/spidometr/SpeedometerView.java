@@ -21,10 +21,12 @@ import androidx.annotation.RequiresApi;
 
 public class SpeedometerView extends View {
     private static final String TAG = "SpeedometerView";
-    private static final int DEFAULT_COLOR = Color.RED;
+    private static final int DEFAULT_COLOR = Color.BLACK;
     private static final int DEFAULT_TEXT_COLOR = Color.BLACK;
 
     private static final int DEFAULT_MAX_VELOCITY = 200;
+
+    private static final int DEFAULT_SIZE = 500;
 
     private static final float STROKE_WIDTH = 64f;
     private static final float STROKE_DIAL_WIDTH = 12f;
@@ -83,10 +85,24 @@ public class SpeedometerView extends View {
     }
 
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int width = resolveSize(DEFAULT_SIZE, widthMeasureSpec);
+        int height = resolveSize(DEFAULT_SIZE, heightMeasureSpec);
+        dialRect = new RectF(0, 0, height - 4 * STROKE_WIDTH, width - 2 * STROKE_WIDTH);
+        setMeasuredDimension(width, height);
+    }
+
+
+//    @Override
+//    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+//        super.onSizeChanged(w, h, oldw, oldh);
+//    }
+
     private void init(@NonNull Context context, @Nullable AttributeSet attrs) {
         dialColorPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         dialPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        dialRect = new RectF(0, 0, 500, 500);
+//        dialRect = new RectF(0, 0, DEFAULT_SIZE, DEFAULT_SIZE);
 
         extractAttributes(context, attrs);
         dialColorPaint.setStrokeWidth(STROKE_WIDTH);
@@ -98,7 +114,6 @@ public class SpeedometerView extends View {
 
         textView = new TextView(context);
         textView.setTextSize(textSize);
-
     }
 
     private void extractAttributes(@NonNull Context context, @Nullable AttributeSet attrs) {
@@ -106,6 +121,7 @@ public class SpeedometerView extends View {
         final TypedArray typedArray = theme.obtainStyledAttributes(attrs, R.styleable.SpeedometerView, R.attr.SpeedometerViewStyle, 0);
         try {
             maxVeloсity = typedArray.getInteger(R.styleable.SpeedometerView_maxVeloсity, DEFAULT_MAX_VELOCITY);
+            //       curentVeloсity = typedArray.getInteger(R.styleable.SpeedometerView_curentVeloсity, DEFAULT_MAX_VELOCITY);
             colorLowVelocity = typedArray.getColor(R.styleable.SpeedometerView_colorLowVelocity, DEFAULT_COLOR);
             colorMediumVelocity = typedArray.getColor(R.styleable.SpeedometerView_colorMediumVelocity, DEFAULT_COLOR);
             colorMaxVelocity = typedArray.getColor(R.styleable.SpeedometerView_colorMaxVelocity, DEFAULT_COLOR);
@@ -217,6 +233,7 @@ public class SpeedometerView extends View {
 
     public void setCurentVeloсity(int curentVeloсity) {
         this.curentVeloсity = curentVeloсity;
+        invalidate();
     }
 
     public int getMaxVeloсity() {

@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">Speedometer</string>
+    <string name="app_name">Анимация</string>
     <string name="unit_mesurment_velosity">км/ч</string>
+    <string name="animation_drawable">animation drawable</string>
+    <string name="view_animations">View Animations</string>
+    <string name="value_animations">Value Animations</string>
+    <string name="object_animations">Object Animations</string>
+    <string name="custom_view_animation">Custom View Animation</string>
 
 </resources>

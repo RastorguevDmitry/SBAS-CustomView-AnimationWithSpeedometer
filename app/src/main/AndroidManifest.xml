@@ -9,6 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Animation.CustomViewAnimationActivity"></activity>
+        <activity android:name=".Animation.ObjectAnimationsActivity" />
+        <activity android:name=".Animation.ValueAnimationsActivity" />
+        <activity android:name=".Animation.ViewAnimationsActivity" />
+        <activity android:name=".Animation.AnimationDrawableActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
