@@ -1,4 +1,4 @@
-# SBAS-CustomView-AnimationWithSpeedometer
+# SBAS-CustomViewAnimation-AnimationWithSpeedometer
 
 приложение, состоящее из главной активити и пяти дополнительных.
 В главной активити находятся кнопки перехода на дополнительные активити.
